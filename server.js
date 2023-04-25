@@ -385,7 +385,7 @@ var Client = /** @class */ (function() {
 
       this._log("ws: Socket closed");
       setTimeout(function() {
-        this.login();
+        var client = new Client(BOT_ID, BOT_PASSWORD);
       }, 10000);
     }
     catch { }
