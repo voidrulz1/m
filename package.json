@@ -1,0 +1,23 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.2.0",
+    "express": "^4.18.2",
+    "form-data": "^4.0.0",
+    "node-fetch": "^2.6.9",
+    "openai": "^3.2.1",
+    "ping-monitor": "^0.6.2",
+    "request": "^2.88.2",
+    "ws": "^8.11.0",
+    "yt-search": "^2.10.4"
+  }
+}
