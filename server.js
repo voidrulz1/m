@@ -1039,34 +1039,7 @@ var Client = /** @class */ (function() {
       ////console.log(getLinkResponse);
       const dlink = getLinkResponse.d_url;
 
-      var shortLink;
-      try {
-        const shortAPIKey = "5e8f3a31ef646ff5a5567d9673e58d11679e0850";
-        const convert2Short = await fetch("https://shrinkearn.com/api?api=" + shortAPIKey + "&url=" + dlink + "&alias=" + rndString(10), {
-          "headers": {
-            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-            "accept-language": "en-US,en;q=0.9,hi;q=0.8",
-            "sec-ch-ua": "\"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"108\", \"Google Chrome\";v=\"108\"",
-            "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-platform": "\"Windows\"",
-            "sec-fetch-dest": "document",
-            "sec-fetch-mode": "navigate",
-            "sec-fetch-site": "none",
-            "sec-fetch-user": "?1",
-            "upgrade-insecure-requests": "1",
-            "cookie": "_ga=GA1.2.509267881.1670282128; cf_clearance=urArc9Ln4HjGvcIE2Nx2V9m3RXd6YsUtYDzeGfvrzy0-1670282181-0-150; csrfToken=c172d6ab59db53f2f57b377a04a8476393a1a32f89f11212768a06883e574e330a833c44552d989e9f182ffda24958f0e0651ae949d4b0881b9f47bf46db4625; ab=2; AppSession=2174548d034da03354295cd73f5cd32b"
-          },
-          "referrerPolicy": "strict-origin-when-cross-origin",
-          "body": null,
-          "method": "GET"
-        });
-
-        const convert2ShortResponse = await convert2Short.json();
-        ////console.log(convert2ShortResponse);
-        shortLink = convert2ShortResponse.shortenedUrl;
-      } catch {
-        shortLink = dlink;
-      }
+      
 
       try {
         var Headers = "{headers: {'Access-Control-Allow-Origin': '*'}";
@@ -1089,7 +1062,7 @@ var Client = /** @class */ (function() {
 
       if (this.myRole != "none") {
         this.sendRoomMsg(roomName, "", vidThumbnail);
-        this.sendRoomMsg(roomName, `Title : ${vidTitle}\nUploaded by : ${uploader}\nDuration : ${vidTime}\nSize : ${vidSize}\nWatch online : ${ytURL}\nDownload Link (audio) : ${shortLink}\n\nPersonal Cooldown : 60 secs.\nRoom Cooldown : 10 secs.`);
+        this.sendRoomMsg(roomName, `Title : ${vidTitle}\nUploaded by : ${uploader}\nDuration : ${vidTime}\nSize : ${vidSize}\nWatch online : ${ytURL}\nDownload Link (audio) : ${dlink}\n\nPersonal Cooldown : 60 secs.\nRoom Cooldown : 10 secs.`);
         this.sendRoomMsg(roomName, "", "", dlink);
 
       }
@@ -1255,6 +1228,15 @@ var Client = /** @class */ (function() {
                 }, 10000);
               }
 
+            }
+            
+            
+           if (message.toLowerCase() == "?restart" || message.toLowerCase() == "?rst") {
+              var text = fs.readFileSync("./masters.txt", "utf-8");
+              var textByLine = text.split("\n");
+              if (textByLine.includes(from)) {
+                this.webSocket.close();
+              }
             }
 
 
