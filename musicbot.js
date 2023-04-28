@@ -14,6 +14,7 @@ const { Configuration, OpenAIApi } = require("openai");
 var FormData = require('form-data');
 const request = require('request');
 var WebSocket = require("ws");
+const fetch = require('node-fetch');
 const fs = require("fs");
 const readline = require("readline");
 const { triggerAsyncId } = require("async_hooks");
