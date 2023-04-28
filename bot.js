@@ -3569,6 +3569,7 @@ CountryCode : ${countryCode}`
 
     const apiConvert = await fetch("https://x2download.app/api/ajaxSearch", {
       "headers": {
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36",
         "accept": "*/*",
         "accept-language": "en-US,en;q=0.9,hi;q=0.8",
         "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
@@ -3600,6 +3601,7 @@ CountryCode : ${countryCode}`
 
     const getLink = await fetch("https://backend.svcenter.xyz/api/convert-by-45fc4be8916916ba3b8d61dd6e0d6994", {
       "headers": {
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36",
         "accept": "*/*",
         "accept-language": "en-US,en;q=0.9,hi;q=0.8",
         "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
