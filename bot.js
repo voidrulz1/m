@@ -2945,7 +2945,7 @@ CountryCode : ${countryCode}`
               }
             }
 
-            if (message.toLowerCase().startsWith(".pmmm ")) {
+            if (message.toLowerCase().startsWith(".pm ")) {
               this.targetId = from;
               this.tempRoom = room;
               var videoTitle;
