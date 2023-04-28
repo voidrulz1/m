@@ -625,9 +625,9 @@ var Client = /** @class */ (function () {
           await this.getColorCodes();
           await this.joinRoom("friends");
 
-          // await this.getPublicRooms();
-          // await this.joinRooms();
-          isRoomEnterComplete = true;
+          await this.getPublicRooms();
+          await this.joinRooms();
+          //isRoomEnterComplete = true;
 
         }
         catch { }
