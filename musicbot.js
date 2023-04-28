@@ -625,9 +625,9 @@ var Client = /** @class */ (function () {
           await this.getColorCodes();
           await this.joinRoom("friends");
 
-           await this.getPublicRooms();
-           await this.joinRooms();
-          //isRoomEnterComplete = true;
+          // await this.getPublicRooms();
+          // await this.joinRooms();
+          isRoomEnterComplete = true;
 
         }
         catch { }
@@ -1092,8 +1092,9 @@ var Client = /** @class */ (function () {
     });
 
     const getLinkResponse = await getLink.json();
-    ////console.log(getLinkResponse);
+    console.log(getLinkResponse);
     this.dlink = getLinkResponse.d_url;
+    await this.removeStr(this.dlink, "/64/");
 
     try {
       var Headers = "{headers: {'Access-Control-Allow-Origin': '*'}";
@@ -1112,15 +1113,6 @@ var Client = /** @class */ (function () {
     } catch {
       this.vidThumbnail = "https://i.ytimg.com/vi/" + this.vidID + "/mqdefault.jpg";
     }
-
-
-
-    async function removeStr(string, str1) {
-      var string = this.dlink;
-      var newstr = string.replace(new RegExp("\\b" + str1 + "\\b"), "/320/");
-      this.dload320 = newstr;
-    }
-    await removeStr(this.dlink, "/64/");
 
 
     if (this.myRole != "none") {
@@ -1168,12 +1160,22 @@ var Client = /** @class */ (function () {
 
   };
 
+
+  Client.prototype.removeStr = async function (string, str1) {
+    var string = this.dlink;
+    var newstr = string.replace(new RegExp("\\b" + str1 + "\\b"), "/320/");
+    this.dload320 = newstr;
+  };
+
+
+
   Client.prototype.shareMusic = async function (shareTo) {
     if (this.shareSongMap.has(this.ShareCommander)) {
 
       var getSharedDetails = this.shareSongMap.get(this.ShareCommander);
       ////console.log(JSON.stringify(getSharedDetails));
 
+      //await this.sendPvtMsg(shareTo, "", getSharedDetails.thumbnailURL)
       await this.sendPvtMsg(shareTo, "Hi " + shareTo + ",\n" + this.ShareCommander + " just dedicated this music to you 🥰\n\n\Music info :\nTitle : " + getSharedDetails.songName + "\nDuration : " + getSharedDetails.duration + "\nSize : " + getSharedDetails.size + "\nDownload link : " + getSharedDetails.dlink);
       ////console.log(getSharedDetails.AudioURL);
       var aud = getSharedDetails.AudioURL;
@@ -1185,7 +1187,7 @@ var Client = /** @class */ (function () {
 
 
       await this.sendPvtMsg(shareTo, "", getSharedDetails.thumbnailURL);
-      await this.sendPvtMsg(shareTo, "", "", aud, "1");
+      await this.sendPvtMsg(shareTo, "", "", aud, "300");
       await this.sendRoomMsg(this.shareTempRoom, "☑️Song has been dedicated to " + shareTo);
 
 
@@ -1194,7 +1196,7 @@ var Client = /** @class */ (function () {
       var roomName2 = rcrds[0].room;
 
       var songRndColor = generateRandomColor();
-      var newStatus = personalMsg.replace("{lastplayedby}", this.playCommander).replace("{lastplayed}", vidTitle).replace("{playedcounts}", playedCount2).replace("{sharedcounts}", sharedCount2).replace("{rndColor}", generateRandomColor()).replace("{songRndColor}", songRndColor).replace("{roomname}", roomName2);
+      var newStatus = personalMsg.replace("{lastplayedby}", this.playCommander).replace("{lastplayed}", this.vidTitle).replace("{playedcounts}", playedCount2).replace("{sharedcounts}", sharedCount2).replace("{rndColor}", generateRandomColor()).replace("{songRndColor}", songRndColor).replace("{roomname}", roomName2);
 
       await this.setStatus(newStatus);
 
