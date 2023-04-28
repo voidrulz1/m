@@ -6,8 +6,9 @@ const Monitor = require('ping-monitor')
 const express = require('express');
 const server = express();
 
-const Hangbot = require('./hangbot.js')
+//const Hangbot = require('./hangbot.js')
 //const Musicbot = require('./musicbot.js')
+const Bot = require('./bot.js')
 
 server.all('/', (req, res) => {
   res.send('<h2>Server is ready!</h2>');
